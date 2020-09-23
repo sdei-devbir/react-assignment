@@ -15,7 +15,10 @@
     "react-scripts": "3.4.3",
     "react-toast-notifications": "^2.4.0",
     "redux": "^4.0.5",
-    "redux-multilanguage": "^0.1.2"
+    "redux-devtools-extension": "^2.13.8",
+    "redux-localstorage-simple": "^2.3.1",
+    "redux-multilanguage": "^0.1.2",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

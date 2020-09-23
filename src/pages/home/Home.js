@@ -1,28 +1,12 @@
 import PropTypes from "prop-types";
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { useHistory } from "react-router";
 
-import logo from "../../logo.svg";
-import apis from "../../services/api.service";
+import fetchCategories from "../../redux/actions/categoriesActions";
 
-const Home = ({}) => {
-  console.log(apis, " checkking in home ");
-
-  const getCategories = async () => {
-    const { categories, err } = await apis.getCategories();
-
-    if (!err && categories.data && categories.data.length) {
-      console.log(categories.data, "categories received");
-    }
-  };
-
-  const categorySearch = async keyword => {
-    const { categories, err } = await apis.categorySearch(keyword);
-    if (!err && categories.data && categories.data.length) {
-      console.log(categories.data, "categories searched received");
-    }
-  };
+const Home = ({ fetchCategories }) => {
+  const history = useHistory();
 
   return (
     <div>
@@ -43,10 +27,21 @@ const Home = ({}) => {
 
       <div className="container">
         Home Component
-        <div class="buttons-holder">
+        <div className="buttons-holder">
           <button
             onClick={() => {
-              getCategories();
+              return history.push({
+                pathname: "/categories"
+              });
+            }}
+            className="btn btn-info"
+          >
+            Go To Categories Page
+          </button>
+
+          <button
+            onClick={() => {
+              fetchCategories();
             }}
             className="btn btn-danger"
           >
@@ -55,7 +50,7 @@ const Home = ({}) => {
 
           <button
             onClick={() => {
-              categorySearch("ery");
+              // categorySearch("ery");
             }}
             className="btn btn-danger"
           >
@@ -67,4 +62,21 @@ const Home = ({}) => {
   );
 };
 
-export default Home;
+// export default Home;
+
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCategories: () => {
+      dispatch(fetchCategories());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
