@@ -23,8 +23,8 @@ const Categories = ({ categories }) => {
           </button>
         </div>
         <ul>
-          {categories.categories.map(category => (
-            <li>{category.title}</li>
+          {categories.categories.map((category, key) => (
+            <li key={key}>{category.title}</li>
           ))}
         </ul>
       </div>
