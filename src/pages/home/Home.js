@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router";
 
 import fetchCategories from "../../redux/actions/categoriesActions";
+import fetchMerchants from "../../redux/actions/merchantsActions";
 
-const Home = ({ fetchCategories }) => {
+const Home = ({ fetchCategories, fetchMerchants }) => {
   const history = useHistory();
 
   return (
@@ -50,6 +51,15 @@ const Home = ({ fetchCategories }) => {
 
           <button
             onClick={() => {
+              fetchMerchants('5f22f61aea3a3a67aefba7d0');
+            }}
+            className="btn btn-danger"
+          >
+            Get Merchants in Category 
+          </button>
+
+          <button
+            onClick={() => {
               // categorySearch("ery");
             }}
             className="btn btn-danger"
@@ -72,6 +82,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCategories: () => {
       dispatch(fetchCategories());
+    },
+    fetchMerchants: (categoryId) => {
+      dispatch(fetchMerchants(categoryId));
     }
   };
 };

@@ -12,20 +12,21 @@ const Categories = lazy(() => import("./pages/categories"));
 
 function App() {
   return (
-    <div className="App">      
-
+    <div className="App">
       <Suspense fallback={<div>Loading...</div>}>
         <Router>
           <Switch>
             <Route exact path={process.env.PUBLIC_URL + "/"} component={Home} />
           </Switch>
           <Switch>
-            <Route exact path={process.env.PUBLIC_URL + "/categories"} component={Categories} />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/categories"}
+              component={Categories}
+            />
           </Switch>
         </Router>
-      </Suspense> 
-
-      
+      </Suspense>
     </div>
   );
 }

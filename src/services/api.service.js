@@ -25,5 +25,18 @@ export default {
         .catch(err => {
           return {categories: null, error: err}
         });     
-    }
+    },
+
+    getMerchants: async (categoryId) => {    
+      return axios
+      .get(
+        `https://mean.stagingsdei.com:6047/merchant/pagination?id=${categoryId}&perPage=10&page=1`
+      )
+      .then(response => {         
+          return {merchants: response.data, error: null}
+      })
+      .catch(err => {
+        return {merchants: null, error: err}
+      });     
+  }
 }
